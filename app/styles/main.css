@@ -1,9 +1,14 @@
 body {
   background-color: #F7F7F7;
+  padding: 0;
+  margin: 0;
   font-family: sans-serif;
 }
+#blockView {
+  padding: 5px;
+}
 .button {
-  width: 150px;
+  width: 130px;
   padding: 5px;
   font-size: 12px;
   margin: 10px;
