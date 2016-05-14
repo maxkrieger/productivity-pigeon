@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <!-- build:css styles/popup-vendor.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css styles/main.css -->
+    <link href="styles/main.css" rel="stylesheet">
+    <!-- endbuild -->
+  </head>
+  <body>
+    <div id="main">
+      <div class="button full" id="toggle"><span class="text">Turn Off</span></div>
+      <div class="button empty" id="blocklist">Blocklist</div>
+    </div>
+    <div id="blockView" style="display: none">
+      <input type="text" id="blockInput" placeholder="example.com ⏎" />
+      <ul id="sites"></ul>
+    </div>
+
+    <!-- build:js scripts/popup-vendor.js -->
+    <!-- bower:js -->
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js scripts/popup.js -->
+    <script src="scripts/popup.js"></script>
+    <!-- endbuild -->
+  </body>
+</html>

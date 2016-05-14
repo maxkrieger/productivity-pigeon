@@ -1,0 +1,39 @@
+body {
+  background-color: #F7F7F7;
+  font-family: sans-serif;
+}
+.button {
+  width: 150px;
+  padding: 5px;
+  font-size: 12px;
+  margin: 10px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: 0.3s;
+  overflow: hidden;
+  border: 1px solid #1D1D1D;
+}
+.button:hover {
+  opacity: 0.9;
+  transition: 0.3s;
+}
+.empty {
+  background-color: #FFFFFF;
+  color: #1D1D1D;
+}
+.full {
+  color: #FFFFFF;
+  background-color: #1D1D1D;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+ul > li {
+  cursor: pointer;
+  padding: 5px;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin: 2px;
+}
