@@ -44,8 +44,10 @@ let createEl = (site) => {
 	siteEl.appendChild(text);
 	sitesEl.appendChild(siteEl);
 	siteEl.onclick = () => {
-		chrome.runtime.sendMessage({directive: "removeSite", site});
-		siteEl.parentNode.removeChild(siteEl);
+		if(window.confirm("Delete " + site + "?")) {
+			chrome.runtime.sendMessage({directive: "removeSite", site});
+			siteEl.parentNode.removeChild(siteEl);
+		}
 	};
 };
 
