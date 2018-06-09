@@ -5,12 +5,16 @@ let state = {
     enabled: true
 };
 
+const setEnabled = (calculateEnabled) => {
+  state.enabled = calculateEnabled(state.enabled);
+  chrome.storage.sync.set({'state': state});
+}
+
 chrome.runtime.onMessage.addListener(
     function(request, sender, callback){
         if(request.directive == 'togglePigeon') {
-            state.enabled = !state.enabled;
-            chrome.storage.sync.set({'state': state});
-            callback(state.enabled);
+          setEnabled(oldEnabled => !oldEnabled)
+          callback(state.enabled);
         }
         else if(request.directive == 'addSite') {
             state.urls.push(request.site);
@@ -48,4 +52,18 @@ chrome.webRequest.onBeforeRequest.addListener((tab) => {
 chrome.storage.sync.get('state', (data) => {
     if(data.state) state = data.state;
     else chrome.storage.sync.set({'state': state});
+});
+
+chrome.commands.onCommand.addListener(function(command) {
+  switch(command) {
+    case 'blocking_on':
+      setEnabled(_ => true);
+      break;
+    case 'blocking_off':
+      setEnabled(_ => false);
+      break;
+    case 'blocking_toggle':
+      setEnabled(oldEnabled => !oldEnabled);
+      break;
+  }
 });

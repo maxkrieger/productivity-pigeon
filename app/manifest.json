@@ -42,5 +42,20 @@
     "default_title": "Productivity Pigeon",
     "default_popup": "popup.html"
   },
+  "commands": {
+    "blocking_on": {
+      "suggested_key": {
+        "default": "Ctrl+D",
+        "mac": "Command+D"
+      },
+      "description": "Turn blocking of the sites ON"
+    },
+    "blocking_off": {
+      "description": "Turn blocking of the sites OFF"
+    },
+    "blocking_toggle": {
+      "description": "Toggle if sites are blocked"
+    }
+  },
   "web_accessible_resources": ["blocked.html", "images/*.png", "fonts/*"]
 }
