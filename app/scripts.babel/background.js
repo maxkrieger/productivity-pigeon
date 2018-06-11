@@ -5,9 +5,14 @@ let state = {
     enabled: true
 };
 
+const saveState = () => {
+  chrome.storage.sync.set({'state': state});
+  chrome.runtime.sendMessage({directive: 'updatePigeonState', state});
+}
+
 const setEnabled = (calculateEnabled) => {
   state.enabled = calculateEnabled(state.enabled);
-  chrome.storage.sync.set({'state': state});
+  saveState();
 }
 
 chrome.runtime.onMessage.addListener(
@@ -18,12 +23,12 @@ chrome.runtime.onMessage.addListener(
         }
         else if(request.directive == 'addSite') {
             state.urls.push(request.site);
-            chrome.storage.sync.set({'state': state});
+            saveState();
             callback();
         }
         else if(request.directive == 'removeSite') {
             state.urls.splice(state.urls.indexOf(request.site), 1);
-            chrome.storage.sync.set({'state': state});
+            saveState();
             callback();
         }
         else if(request.directive == 'test') {
@@ -50,7 +55,10 @@ chrome.webRequest.onBeforeRequest.addListener((tab) => {
 }, ['blocking']);
 
 chrome.storage.sync.get('state', (data) => {
-    if(data.state) state = data.state;
+    if(data.state) {
+      state = data.state;
+      chrome.runtime.sendMessage({directive: 'updatePigeonState', state});
+    }
     else chrome.storage.sync.set({'state': state});
 });
 

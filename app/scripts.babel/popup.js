@@ -54,3 +54,12 @@ window.onload = function() {
         renderToggle(data.state.enabled);
     });
 };
+
+chrome.runtime.onMessage.addListener(
+  (request, sender, callback) => {
+    if(request.directive == 'updatePigeonState') {
+      renderToggle(request.state.enabled)
+      callback()
+    }
+  }
+);
