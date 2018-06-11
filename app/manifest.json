@@ -45,8 +45,8 @@
   "commands": {
     "blocking_on": {
       "suggested_key": {
-        "default": "Ctrl+D",
-        "mac": "Command+D"
+        "default": "Ctrl+Shift+X",
+        "mac": "Command+Shift+X"
       },
       "description": "Turn blocking of the sites ON"
     },
